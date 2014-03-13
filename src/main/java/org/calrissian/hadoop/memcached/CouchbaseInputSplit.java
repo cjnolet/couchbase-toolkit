@@ -11,6 +11,10 @@ public class CouchbaseInputSplit extends InputSplit implements Writable {
 
     short[] locations;
 
+    public CouchbaseInputSplit() {
+
+    }
+
     public CouchbaseInputSplit(short[] locations) {
         this.locations = locations;
     }

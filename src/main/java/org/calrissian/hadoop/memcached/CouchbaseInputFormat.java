@@ -109,7 +109,7 @@ public class CouchbaseInputFormat extends InputFormat<Text, BytesWritable> {
                 messageBuilder.supportAck();
 
                 try {
-                    tapClient.tapCustom(null, messageBuilder.getMessage());
+                    stream = tapClient.tapCustom(null, messageBuilder.getMessage());
                 } catch (ConfigurationException e) {
                     throw new IOException(e);
                 }
