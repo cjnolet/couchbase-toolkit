@@ -48,6 +48,7 @@ public class CouchbaseInputFormat extends InputFormat<Text, BytesWritable> {
         }
         CouchbaseClient client = new CouchbaseClient(locactions, getBucket(jobContext), getPassword(jobContext));
         int numVBuckets = client.getNumVBuckets();
+        client.shutdown();
 
         int itemsPerChunk = numVBuckets / getParallelism(jobContext);
         int extraItems = numVBuckets % getParallelism(jobContext);
@@ -156,7 +157,7 @@ public class CouchbaseInputFormat extends InputFormat<Text, BytesWritable> {
 
             @Override
             public void close() throws IOException {
-
+                tapClient.shutdown();
             }
         };
     }
